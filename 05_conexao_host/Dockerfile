@@ -4,10 +4,12 @@ RUN apt-get update -y && apt-get install -y python3-pip python3-dev
 
 WORKDIR /app
 
-RUN pip install flask requests flask_mysqldb
+RUN pip install flask
+RUN pip install requests
+RUN pip install flask-mysqldb
 
 COPY . .
 
 EXPOSE 5000
 
-CMD [ "python", "app.py" ]
+CMD [ "python", "app.py"]
