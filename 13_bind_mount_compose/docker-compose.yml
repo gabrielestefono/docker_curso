@@ -1,0 +1,28 @@
+version: "3.3"
+
+services:
+  db:
+    build: ./mysql/
+    restart: always
+    env_file: ./config/db.env
+    ports:
+      - "3307:3306"
+    networks:
+      - dockercompose
+    mem_limit: 1g
+  
+  backend:
+    depends_on:
+      - db
+    build: ./flask/
+    ports:
+      - "5000:5000"
+    restart: always
+    volumes:
+      - "D:\\Estudos\\docker_mb\\13_bind_mount_compose\\flask:/app"
+    networks:
+      - dockercompose
+    mem_limit: 1g
+
+networks:
+  dockercompose:
